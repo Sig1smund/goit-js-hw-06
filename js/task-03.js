@@ -14,9 +14,10 @@ const images = [
 ];
 
 const galleryList = document.querySelector('.gallery');
+galleryList.style.display = 'flex';
 
 images.forEach(element => {
   galleryList.insertAdjacentHTML(
-    "afterbegin", `<li><img src='${element.url}' alt='${element.alt}' width = '200' height = auto/></li>`
+    "afterbegin", `<li><img src='${element.url}' alt='${element.alt}' width = '200'/></li>`
   )
 });
