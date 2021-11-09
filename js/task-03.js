@@ -15,6 +15,8 @@ const images = [
 
 const galleryList = document.querySelector('.gallery');
 galleryList.style.display = 'flex';
+galleryList.style.listStyle = 'none';
+galleryList.style.justifyContent = 'center';
 
 images.forEach(element => {
   galleryList.insertAdjacentHTML(
