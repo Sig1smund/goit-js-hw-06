@@ -9,10 +9,8 @@ const amountSetter = document.querySelector('input');
 
 const nums = [];
 
-
-
 const countDivs = (event) => {
-  nums.push(event.currentTarget.value);
+  nums.push(...event.currentTarget.value);
 
   return nums;
 }
@@ -27,12 +25,8 @@ function createBoxes(amount) {
   let baseWidth = '10px';
   let baseHeight = '10px'
   nums.forEach(item => {
-    const makeDiv = document.createElement('div');
-    makeDiv.width += baseWidth;
-    makeDiv.height += baseHeight;
-    makeDiv.backgroundColor = getRandomHexColor;
-
-    return makeDiv;
-
+    container.insertAdjacentHTML(
+      'afterbegin', `<div width='${baseWidth}' height='${baseHeight}'></div>`
+    )
   });
 }
