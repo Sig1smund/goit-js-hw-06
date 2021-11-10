@@ -12,17 +12,16 @@ const destroyBtn = document.querySelector('button[data-destroy]');
 const amountSetter = document.querySelector('input');
 
 let nums = [];
+let boxItem;
+let boxHolder = [];
+let baseWidth = 30;
+let baseHeight = 30;
 
 const countDivs = (event) => {
   nums.push(...event.currentTarget.value);
 
   return nums;
 }
-
-let boxItem;
-let boxHolder = [];
-let baseWidth = 30;
-let baseHeight = 30;
 
 function createBoxes(amount) {
   nums.forEach(item => {
@@ -36,6 +35,7 @@ function createBoxes(amount) {
     boxItem.textContent = item;
     boxHolder.push(boxItem);
     nums = [];
+    console.log(nums)
     amountSetter.value = 0;
 
     return container.append(...boxHolder);
@@ -44,6 +44,7 @@ function createBoxes(amount) {
 
 function destroyBoxes() {
   nums = [];
+  console.log(nums)
   amountSetter.value = 0;
   return container.replaceChildren('');
 }
