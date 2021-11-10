@@ -18,7 +18,7 @@ const countDivs = (event) => {
 
   return nums;
 }
-
+let boxItem;
 let boxHolder = [];
 let baseWidth = 30;
 let baseHeight = 30;
@@ -27,7 +27,7 @@ function createBoxes(amount) {
   nums.forEach(item => {
     baseHeight += incrementSizes();
     baseWidth += incrementSizes();
-    const boxItem = document.createElement('div');
+    boxItem = document.createElement('div');
     boxItem.classList.add('.item');
     boxItem.style.backgroundColor = getRandomHexColor();
     boxItem.style.width = baseWidth.toString() + 'px';
@@ -40,7 +40,7 @@ function createBoxes(amount) {
 }
 
 function destroyBoxes() {
-  return boxes.remove();
+  return container.replaceChildren('')
 }
 
 amountSetter.addEventListener('input', countDivs);
