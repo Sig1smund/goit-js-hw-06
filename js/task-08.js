@@ -11,7 +11,7 @@ function formGatherFn (event) {
     const password = formElem.password.value;
 
     if (mail === '' || password === '') {
-        window.alert('все поля должны быть заполнены');
+        alert('все поля должны быть заполнены');
     }
 
     const formData = {
