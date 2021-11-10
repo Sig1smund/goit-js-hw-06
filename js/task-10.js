@@ -2,12 +2,16 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
+function incrementSizes() {
+  return 10;
+}
+
 const container = document.getElementById('boxes');
 const createBtn = document.querySelector('button[data-create]');
 const destroyBtn = document.querySelector('button[data-destroy]');
 const amountSetter = document.querySelector('input');
 
-const nums = [];
+let nums = [];
 
 const countDivs = (event) => {
   nums.push(...event.currentTarget.value);
@@ -15,18 +19,30 @@ const countDivs = (event) => {
   return nums;
 }
 
-amountSetter.addEventListener('input', countDivs)
-
-createBtn.addEventListener('click', createBoxes(nums));
-// destroyBtn.addEventListener('click');
-
+let boxHolder = [];
+let baseWidth = 30;
+let baseHeight = 30;
 
 function createBoxes(amount) {
-  let baseWidth = '10px';
-  let baseHeight = '10px'
   nums.forEach(item => {
-    container.insertAdjacentHTML(
-      'afterbegin', `<div width='${baseWidth}' height='${baseHeight}'></div>`
-    )
+    baseHeight += incrementSizes();
+    baseWidth += incrementSizes();
+    const boxItem = document.createElement('div');
+    boxItem.classList.add('.item');
+    boxItem.style.backgroundColor = getRandomHexColor();
+    boxItem.style.width = baseWidth.toString() + 'px';
+    boxItem.style.height = baseHeight.toString() + 'px';
+    boxItem.textContent = item;
+    boxHolder.push(boxItem);
+
+    return container.append(...boxHolder);
   });
 }
+
+function destroyBoxes() {
+  return boxes.remove();
+}
+
+amountSetter.addEventListener('input', countDivs);
+createBtn.addEventListener('click', createBoxes);
+destroyBtn.addEventListener('click', destroyBoxes);

@@ -18,8 +18,21 @@ galleryList.style.display = 'flex';
 galleryList.style.listStyle = 'none';
 galleryList.style.justifyContent = 'center';
 
-images.forEach(element => {
-  galleryList.insertAdjacentHTML(
-    "afterbegin", `<li><img src='${element.url}' alt='${element.alt}' width = '200'/></li>`
-  )
-});
+const makeImageListMarkup = image => {
+  const { url, alt } = image;
+  return `
+  <li>
+    <img
+      src='${url}' 
+      alt='${alt}' 
+      width = '200'
+    />
+  </li>
+  `;
+};
+
+const makeImages = images
+  .map(makeImageListMarkup)
+  .join('');
+
+galleryList.insertAdjacentHTML("afterbegin", makeImages);
