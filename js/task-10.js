@@ -18,6 +18,7 @@ const countDivs = (event) => {
 
   return nums;
 }
+
 let boxItem;
 let boxHolder = [];
 let baseWidth = 30;
@@ -34,13 +35,17 @@ function createBoxes(amount) {
     boxItem.style.height = baseHeight.toString() + 'px';
     boxItem.textContent = item;
     boxHolder.push(boxItem);
+    nums = [];
+    amountSetter.value = 0;
 
     return container.append(...boxHolder);
   });
 }
 
 function destroyBoxes() {
-  return container.replaceChildren('')
+  nums = [];
+  amountSetter.value = 0;
+  return container.replaceChildren('');
 }
 
 amountSetter.addEventListener('input', countDivs);
