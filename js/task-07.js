@@ -1,4 +1,5 @@
 const progressBar = document.getElementById('font-size-control');
+progressBar.setAttribute('value', 16);
 const textContainer = document.getElementById('text');
 
 let sizeValue = 0;
