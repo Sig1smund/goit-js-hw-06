@@ -12,10 +12,12 @@ const destroyBtn = document.querySelector('button[data-destroy]');
 const amountSetter = document.querySelector('input');
 
 let nums = [];
-let boxItem;
+let boxItem =[];
 let boxHolder = [];
 let baseWidth = 30;
 let baseHeight = 30;
+
+customizeContainer(container);
 
 const countDivs = (event) => {
   nums.push(...event.currentTarget.value);
@@ -29,24 +31,37 @@ function createBoxes(amount) {
     baseWidth += incrementSizes();
     boxItem = document.createElement('div');
     boxItem.classList.add('.item');
-    boxItem.style.backgroundColor = getRandomHexColor();
-    boxItem.style.width = baseWidth.toString() + 'px';
-    boxItem.style.height = baseHeight.toString() + 'px';
-    boxItem.textContent = item;
+    customizeBox(boxItem);
     boxHolder.push(boxItem);
     nums = [];
-    console.log(nums)
     amountSetter.value = 0;
 
-    return container.append(...boxHolder);
+    container.append(...boxHolder);
+
+    return boxHolder = [];
   });
+}
+
+function customizeBox(obj) {
+    obj.style.backgroundColor = getRandomHexColor();
+    obj.style.width = baseWidth.toString() + 'px';
+    obj.style.height = baseHeight.toString() + 'px';
+}
+
+function customizeContainer(div) {
+  div.style.display = 'flex';
+  div.style.flexWrap = 'wrap';
+  div.style.justifyContent = 'space-between'
+  div.style.flexDirection = 'column-reverse';
 }
 
 function destroyBoxes() {
   nums = [];
-  console.log(nums)
+  boxHolder = [];
   amountSetter.value = 0;
-  return container.replaceChildren('');
+  container.innerHTML = '';
+  baseHeight = 30;
+  baseWidth = 30;
 }
 
 amountSetter.addEventListener('input', countDivs);
